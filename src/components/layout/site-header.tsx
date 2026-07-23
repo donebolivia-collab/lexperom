@@ -18,6 +18,10 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 sm:flex">
+          <Link href="/soluciones-legales" className={NAV_ITEM}>
+            <span className="text-sm font-normal text-white/70">Soluciones</span>
+            <span className="text-sm font-bold text-white">Legales</span>
+          </Link>
           <Link href="/planes" className={NAV_ITEM}>
             <span className="text-sm font-normal text-white/70">Nuestros</span>
             <span className="text-sm font-bold text-white">Planes</span>
