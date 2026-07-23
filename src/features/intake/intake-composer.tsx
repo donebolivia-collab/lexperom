@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Paperclip, X, FileText, Image as ImageIcon } from "lucide-react";
+import { Paperclip, X, FileText, Image as ImageIcon, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   ALLOWED_DOCUMENT_MIME_TYPES,
@@ -29,6 +29,10 @@ function formatSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
+
+// Cada fila se ilumina con un tono suave del azul de marca al enfocarse,
+// ya que los campos individuales no tienen su propio borde para resaltar.
+const FOCUS_ROW = "transition-colors focus-within:bg-brand/[0.04]";
 
 /**
  * Toda la consulta en una sola tarjeta, siguiendo el patrón de los
@@ -110,13 +114,18 @@ export function IntakeComposer({
           aria-label="Describe tu problema legal"
           aria-invalid={Boolean(narrativeError)}
           aria-describedby={narrativeError ? "narrative-error" : undefined}
-          className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-base leading-relaxed text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+          className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-base leading-relaxed text-ink placeholder:text-muted transition-colors focus:bg-brand/[0.04] focus:outline-none focus:ring-0"
         />
 
-        <div className="flex items-center justify-between border-t border-line px-3 py-2">
+        <div
+          className={cn(
+            "flex items-center justify-between border-t border-brand/20 px-3 py-2",
+            FOCUS_ROW
+          )}
+        >
           <label
             htmlFor={attachId}
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-muted hover:bg-black/[0.05] hover:text-ink-soft"
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-ink hover:bg-black/[0.05]"
             title="Adjuntar documentos o fotografías"
           >
             <Paperclip className="h-4 w-4" aria-hidden="true" />
@@ -138,9 +147,10 @@ export function IntakeComposer({
           </span>
         </div>
 
-        <div className="border-t border-line px-4 py-3">
-          <label htmlFor="phone" className="block text-xs font-medium text-ink">
-            Tu WhatsApp
+        <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
+          <label htmlFor="phone" className="flex items-center gap-1.5 text-xs font-medium text-ink">
+            <MessageCircle className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+            Tu número de celular
           </label>
           <input
             id="phone"
@@ -155,7 +165,7 @@ export function IntakeComposer({
           />
         </div>
 
-        <div className="border-t border-line px-4 py-3">
+        <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
           <label htmlFor="fullName" className="block text-xs font-medium text-ink">
             Tu nombre (opcional)
           </label>
