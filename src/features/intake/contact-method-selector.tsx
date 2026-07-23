@@ -37,7 +37,7 @@ export function ContactMethodSelector({
   return (
     <div className="space-y-4">
       <div>
-        <p className="mb-2 text-sm font-medium text-ink-soft">
+        <p className="mb-2 text-sm font-medium text-ink">
           ¿Cómo prefieres que te contactemos para darte la respuesta?
         </p>
         <div role="radiogroup" className="grid grid-cols-2 gap-2">

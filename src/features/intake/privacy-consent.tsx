@@ -23,15 +23,14 @@ export function PrivacyConsent({ checked, onChange, error }: PrivacyConsentProps
           <Link href="/privacidad" className="text-brand underline underline-offset-2" target="_blank">
             Política de Privacidad
           </Link>{" "}
-          y autorizo el tratamiento de la información enviada para evaluar mi consulta y
-          contactarme.
+          y los{" "}
+          <Link href="/terminos" className="text-brand underline underline-offset-2" target="_blank">
+            Términos de Uso
+          </Link>
+          .
         </span>
       </label>
       {error && <p className="mt-1.5 pl-8 text-xs text-urgency-critico">{error}</p>}
-      <p className="mt-3 text-xs leading-relaxed text-muted">
-        El envío de esta consulta no crea automáticamente una relación abogado-cliente ni
-        garantiza la aceptación del caso.
-      </p>
     </div>
   );
 }
