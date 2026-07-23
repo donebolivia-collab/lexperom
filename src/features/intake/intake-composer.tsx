@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Paperclip, X, FileText, Image as ImageIcon, MessageCircle } from "lucide-react";
+import { Paperclip, X, FileText, Image as ImageIcon, Phone, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   ALLOWED_DOCUMENT_MIME_TYPES,
@@ -149,7 +149,7 @@ export function IntakeComposer({
 
         <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
           <label htmlFor="phone" className="flex items-center gap-1.5 text-xs font-medium text-ink">
-            <MessageCircle className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+            <Phone className="h-4 w-4" aria-hidden="true" />
             Tu número de celular
           </label>
           <input
@@ -166,7 +166,8 @@ export function IntakeComposer({
         </div>
 
         <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
-          <label htmlFor="fullName" className="block text-xs font-medium text-ink">
+          <label htmlFor="fullName" className="flex items-center gap-1.5 text-xs font-medium text-ink">
+            <User className="h-4 w-4" aria-hidden="true" />
             Tu nombre (opcional)
           </label>
           <input
