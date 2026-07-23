@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Paperclip, X, FileText, Image as ImageIcon, Phone, User } from "lucide-react";
+import { Paperclip, X, FileText, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   ALLOWED_DOCUMENT_MIME_TYPES,
@@ -33,20 +33,17 @@ function formatSize(bytes: number): string {
 // Cada fila se ilumina con un tono suave del azul de marca al enfocarse,
 // ya que los campos individuales no tienen su propio borde para resaltar.
 const FOCUS_ROW = "transition-colors focus-within:bg-brand/[0.04]";
-// Mismo padding en las 3 filas (adjuntar, celular, nombre) para que todas
-// midan igual de alto, y mismo estilo de línea divisoria entre ellas.
 const ROW = "border-t border-brand/35 px-4 py-3";
-// Etiqueta uniforme: mismo ícono (14px), misma fuente y tamaño en las 3.
-const ROW_LABEL = "flex items-center gap-1.5 text-xs font-medium text-ink";
-const ROW_ICON = "h-3.5 w-3.5 shrink-0";
+const FIELD = "w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0";
 
 /**
- * Toda la consulta en una sola tarjeta, siguiendo el patrón de los
- * compositores de chat modernos (Claude, ChatGPT, Gmail): relato,
- * adjuntar, WhatsApp y nombre viven dentro del mismo borde, separados por
- * líneas internas — no como bloques sueltos. WhatsApp es el único canal
- * visible: es el que domina en este mercado y el correo aún no está
- * activo en el sitio, así que no tiene sentido pedirlo aquí todavía.
+ * Toda la consulta en una sola tarjeta: el clip vive flotando dentro del
+ * propio cuadro de texto (como en los compositores de ChatGPT/Claude),
+ * no en una fila aparte. Celular y nombre no llevan etiqueta visible —
+ * el placeholder dice qué va ahí — para mantener la caja lo más limpia
+ * posible; siguen siendo accesibles vía aria-label para lectores de
+ * pantalla. Toda la tarjeta reacciona al pasar el mouse (antes de hacer
+ * clic) para que se sienta claramente interactiva.
  */
 export function IntakeComposer({
   narrative,
@@ -106,28 +103,32 @@ export function IntakeComposer({
           addFiles(e.dataTransfer.files);
         }}
         className={cn(
-          "overflow-hidden rounded-lg border-2 bg-surface shadow-sm transition-colors",
-          narrativeError ? "border-urgency-critico" : "border-brand",
+          "overflow-hidden rounded-lg border-2 bg-surface shadow-sm transition-all",
+          narrativeError ? "border-urgency-critico" : "border-brand hover:border-brand-strong hover:shadow-md",
           isDragging && "bg-brand/[0.03]"
         )}
       >
-        <textarea
-          value={narrative}
-          onChange={(e) => onNarrativeChange(e.target.value)}
-          placeholder="Detalla tu consulta aquí. Un abogado la revisará y te responderá."
-          autoFocus={autoFocus}
-          maxLength={NARRATIVE_MAX_LENGTH}
-          aria-label="Describe tu problema legal"
-          aria-invalid={Boolean(narrativeError)}
-          aria-describedby={narrativeError ? "narrative-error" : undefined}
-          className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-base leading-relaxed text-ink placeholder:text-muted transition-colors focus:bg-brand/[0.04] focus:outline-none focus:ring-0"
-        />
+        <div className="relative">
+          <textarea
+            value={narrative}
+            onChange={(e) => onNarrativeChange(e.target.value)}
+            placeholder="Detalla tu consulta aquí. Un abogado la revisará y te responderá."
+            autoFocus={autoFocus}
+            maxLength={NARRATIVE_MAX_LENGTH}
+            aria-label="Describe tu problema legal"
+            aria-invalid={Boolean(narrativeError)}
+            aria-describedby={narrativeError ? "narrative-error" : undefined}
+            className="h-[154px] w-full resize-none border-0 bg-transparent px-4 pt-3 pb-12 text-base leading-relaxed text-ink placeholder:text-muted transition-colors focus:bg-brand/[0.04] focus:outline-none focus:ring-0"
+          />
 
-        <div className={cn(ROW, FOCUS_ROW)}>
-          <div className="flex items-center justify-between">
-            <label htmlFor={attachId} className={cn(ROW_LABEL, "cursor-pointer")}>
-              <Paperclip className={ROW_ICON} aria-hidden="true" />
-              Adjuntar documentos
+          <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-center justify-between">
+            <label
+              htmlFor={attachId}
+              className="pointer-events-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-line bg-surface text-ink shadow-sm hover:bg-black/[0.05]"
+              title="Adjuntar documentos o fotografías"
+            >
+              <Paperclip className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">Adjuntar documentos o fotografías</span>
             </label>
             <input
               id={attachId}
@@ -144,42 +145,37 @@ export function IntakeComposer({
               {narrative.length}/{NARRATIVE_MAX_LENGTH}
             </span>
           </div>
-          <p className="mt-1 text-base text-muted">PDF, Word o fotos — hasta 6 archivos, 15 MB c/u</p>
         </div>
 
         <div className={cn(ROW, FOCUS_ROW)}>
-          <label htmlFor="phone" className={ROW_LABEL}>
-            <Phone className={ROW_ICON} aria-hidden="true" />
-            Tu número de celular
-          </label>
           <input
             id="phone"
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="Ej. 71234567"
+            placeholder="Tu número de celular"
+            aria-label="Tu número de celular"
             value={phone}
             onChange={(e) => onPhoneChange(e.target.value)}
             aria-invalid={Boolean(phoneError)}
-            className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+            className={FIELD}
           />
         </div>
 
         <div className={cn(ROW, FOCUS_ROW)}>
-          <label htmlFor="fullName" className={ROW_LABEL}>
-            <User className={ROW_ICON} aria-hidden="true" />
-            Tu nombre (opcional)
-          </label>
           <input
             id="fullName"
             autoComplete="name"
-            placeholder="¿Cómo te llamas?"
+            placeholder="Tu nombre (opcional)"
+            aria-label="Tu nombre (opcional)"
             value={fullName}
             onChange={(e) => onFullNameChange(e.target.value)}
-            className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+            className={FIELD}
           />
         </div>
       </div>
+
+      <p className="mt-2 text-xs text-muted">PDF, Word o fotos — hasta 6 archivos, 15 MB c/u</p>
 
       {narrativeError && (
         <p id="narrative-error" className="mt-1.5 text-xs text-urgency-critico">
