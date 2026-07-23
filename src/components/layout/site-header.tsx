@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   return (
@@ -23,20 +21,13 @@ export function SiteHeader() {
           <Link href="/profesional" className="hover:text-white">
             Profesional
           </Link>
+          <Link href="/canales-contacto" className="hover:text-white">
+            Contacto
+          </Link>
           <Link href="/privacidad" className="hover:text-white">
             Privacidad
           </Link>
         </nav>
-
-        <Link
-          href="/canales-contacto"
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "bg-white text-brand hover:bg-white/90"
-          )}
-        >
-          Contacto
-        </Link>
       </div>
     </header>
   );
