@@ -18,6 +18,11 @@ interface IntakeComposerProps {
   onFilesChange: (files: File[]) => void;
   autoFocus?: boolean;
   narrativeError?: string;
+  phone: string;
+  onPhoneChange: (value: string) => void;
+  phoneError?: string;
+  fullName: string;
+  onFullNameChange: (value: string) => void;
 }
 
 function formatSize(bytes: number): string {
@@ -26,9 +31,12 @@ function formatSize(bytes: number): string {
 }
 
 /**
- * Cuadro de relato + adjuntar documentos como una sola tarjeta, siguiendo
- * el patrón de los compositores de chat modernos (Claude, ChatGPT, Gmail):
- * el clip vive dentro del mismo borde que el texto, no como bloque aparte.
+ * Toda la consulta en una sola tarjeta, siguiendo el patrón de los
+ * compositores de chat modernos (Claude, ChatGPT, Gmail): relato,
+ * adjuntar, WhatsApp y nombre viven dentro del mismo borde, separados por
+ * líneas internas — no como bloques sueltos. WhatsApp es el único canal
+ * visible: es el que domina en este mercado y el correo aún no está
+ * activo en el sitio, así que no tiene sentido pedirlo aquí todavía.
  */
 export function IntakeComposer({
   narrative,
@@ -37,6 +45,11 @@ export function IntakeComposer({
   onFilesChange,
   autoFocus,
   narrativeError,
+  phone,
+  onPhoneChange,
+  phoneError,
+  fullName,
+  onFullNameChange,
 }: IntakeComposerProps) {
   const attachId = useId();
   const [isDragging, setIsDragging] = useState(false);
@@ -124,6 +137,37 @@ export function IntakeComposer({
             {narrative.length}/{NARRATIVE_MAX_LENGTH}
           </span>
         </div>
+
+        <div className="border-t border-line px-4 py-3">
+          <label htmlFor="phone" className="block text-xs font-medium text-muted">
+            Tu WhatsApp
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="Ej. 71234567"
+            value={phone}
+            onChange={(e) => onPhoneChange(e.target.value)}
+            aria-invalid={Boolean(phoneError)}
+            className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+          />
+        </div>
+
+        <div className="border-t border-line px-4 py-3">
+          <label htmlFor="fullName" className="block text-xs font-medium text-muted">
+            Tu nombre (opcional)
+          </label>
+          <input
+            id="fullName"
+            autoComplete="name"
+            placeholder="¿Cómo te llamas?"
+            value={fullName}
+            onChange={(e) => onFullNameChange(e.target.value)}
+            className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+          />
+        </div>
       </div>
 
       {narrativeError && (
@@ -131,6 +175,7 @@ export function IntakeComposer({
           {narrativeError}
         </p>
       )}
+      {phoneError && <p className="mt-1.5 text-xs text-urgency-critico">{phoneError}</p>}
       {attachError && <p className="mt-1.5 text-xs text-urgency-critico">{attachError}</p>}
 
       {files.length > 0 && (

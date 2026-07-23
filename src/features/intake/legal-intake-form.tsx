@@ -3,24 +3,25 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { IntakeComposer } from "./intake-composer";
-import { ContactMethodSelector } from "./contact-method-selector";
 import { PrivacyConsent } from "./privacy-consent";
 import { SubmissionConfirmation } from "./submission-confirmation";
 import { useIntakeDraft } from "./use-intake-draft";
 import { submitConsultation } from "./actions";
 import { captureAttributionOnce, getStoredAttribution } from "@/lib/attribution";
-import { NARRATIVE_MIN_LENGTH, type ContactMethodValue } from "@/validators/consultation";
+import { NARRATIVE_MIN_LENGTH } from "@/validators/consultation";
 import type { SubmitConsultationResult } from "@/types/intake";
+
+// Único canal visible en el formulario: WhatsApp domina este mercado y el
+// correo todavía no está activo en el sitio (ver Canales de Contacto).
+const CONTACT_METHOD = "whatsapp" as const;
 
 export function LegalIntakeForm() {
   const { restoredDraft, saveDraft, clearDraft } = useIntakeDraft();
 
   const [narrative, setNarrative] = useState("");
   const [files, setFiles] = useState<File[]>([]);
-  const [contactMethod, setContactMethod] = useState<ContactMethodValue>("whatsapp");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [draftDismissed, setDraftDismissed] = useState(false);
@@ -44,10 +45,8 @@ export function LegalIntakeForm() {
   function applyDraft() {
     if (!restoredDraft) return;
     setNarrative(restoredDraft.narrative);
-    setContactMethod(restoredDraft.contactMethod || "whatsapp");
     setFullName(restoredDraft.fullName || "");
     setPhone(restoredDraft.phone || "");
-    setEmail(restoredDraft.email || "");
     setDraftDismissed(true);
   }
 
@@ -58,18 +57,16 @@ export function LegalIntakeForm() {
 
   useEffect(() => {
     if (!narrative) return;
-    saveDraft({ narrative, contactMethod, fullName, phone, email });
-  }, [narrative, contactMethod, fullName, phone, email, saveDraft]);
+    saveDraft({ narrative, contactMethod: CONTACT_METHOD, fullName, phone, email: "" });
+  }, [narrative, fullName, phone, saveDraft]);
 
   function validateBeforeSubmit(): boolean {
     const errors: Partial<Record<string, string>> = {};
     if (narrative.trim().length < NARRATIVE_MIN_LENGTH) {
       errors.narrative = "Cuéntanos un poco más sobre lo que ocurrió para poder ayudarte.";
     }
-    if (contactMethod === "whatsapp" && !phone.trim()) {
-      errors.phone = "Ingresa un número de celular para contactarte.";
-    } else if (contactMethod === "email" && !email.trim()) {
-      errors.email = "Ingresa un correo electrónico para contactarte.";
+    if (!phone.trim()) {
+      errors.phone = "Ingresa tu WhatsApp para que podamos contactarte.";
     }
     if (!consent) {
       errors.consent = "Debes aceptar la Política de Privacidad para continuar.";
@@ -85,10 +82,9 @@ export function LegalIntakeForm() {
 
     const formData = new FormData();
     formData.set("narrative", narrative);
-    formData.set("contactMethod", contactMethod);
+    formData.set("contactMethod", CONTACT_METHOD);
     formData.set("fullName", fullName);
     formData.set("phone", phone);
-    formData.set("email", email);
     formData.set("consent", consent ? "true" : "false");
     formData.set("website", honeypot);
     formData.set("idempotencyKey", idempotencyKey);
@@ -154,21 +150,11 @@ export function LegalIntakeForm() {
         onFilesChange={setFiles}
         autoFocus
         narrativeError={fieldErrors.narrative}
-      />
-
-      <ContactMethodSelector
-        method={contactMethod}
-        onMethodChange={(value) => {
-          setContactMethod(value);
-          setFieldErrors((prev) => ({ ...prev, contactMethod: undefined }));
-        }}
-        fullName={fullName}
-        onFullNameChange={setFullName}
         phone={phone}
         onPhoneChange={setPhone}
-        email={email}
-        onEmailChange={setEmail}
-        errors={{ phone: fieldErrors.phone, email: fieldErrors.email }}
+        phoneError={fieldErrors.phone}
+        fullName={fullName}
+        onFullNameChange={setFullName}
       />
 
       <PrivacyConsent checked={consent} onChange={setConsent} error={fieldErrors.consent} />
