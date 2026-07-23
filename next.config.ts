@@ -10,7 +10,16 @@ const csp = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  "script-src 'self'",
+  // 'unsafe-inline' es necesario porque Next.js App Router entrega el
+  // payload de Server Components al cliente vía <script> inline
+  // (self.__next_f.push(...)); sin esto, React nunca hidrata y el sitio
+  // queda no interactivo. Un CSP con nonce por request evitaría esto, pero
+  // requiere Proxy/middleware — que en Next.js 16 solo corre en runtime
+  // Node.js, incompatible con el despliegue en Cloudflare Workers. No hay
+  // dangerouslySetInnerHTML con contenido de usuario en el sitio (solo el
+  // JSON-LD, con datos controlados por el servidor), así que el riesgo
+  // real de este trade-off es bajo.
+  "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: blob:${supabaseOrigin ? ` ${supabaseOrigin}` : ""}`,
   "font-src 'self' data:",

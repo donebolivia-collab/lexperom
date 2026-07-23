@@ -1,8 +1,10 @@
 import { AdminSidebar } from "@/components/layout/admin-sidebar";
 import { AdminTopbar } from "@/components/layout/admin-topbar";
 import { getCurrentProfile } from "@/features/auth/get-current-profile";
+import { requireUser } from "@/features/auth/require-user";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  await requireUser();
   const profile = await getCurrentProfile();
 
   return (
