@@ -175,8 +175,6 @@ export function IntakeComposer({
         </div>
       </div>
 
-      <p className="mt-2 text-xs text-muted">PDF, Word o fotos — hasta 6 archivos, 15 MB c/u</p>
-
       {narrativeError && (
         <p id="narrative-error" className="mt-1.5 text-xs text-urgency-critico">
           {narrativeError}
