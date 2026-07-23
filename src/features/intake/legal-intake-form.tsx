@@ -74,7 +74,7 @@ export function LegalIntakeForm() {
     }
     if (!contactMethod) {
       errors.contactMethod = "Elige cómo prefieres que te contactemos.";
-    } else if ((contactMethod === "whatsapp" || contactMethod === "llamada") && !phone.trim()) {
+    } else if (contactMethod === "whatsapp" && !phone.trim()) {
       errors.phone = "Ingresa un número de celular para contactarte.";
     } else if (contactMethod === "email" && !email.trim()) {
       errors.email = "Ingresa un correo electrónico para contactarte.";

@@ -36,16 +36,12 @@ export function ProblemTextarea({ value, onChange, autoFocus, error }: ProblemTe
         aria-describedby={error ? "narrative-error" : undefined}
         className="min-h-[154px] resize-none border-2 border-header-accent text-lg leading-relaxed shadow-sm"
       />
-      <div className="mt-2 flex items-center justify-between text-xs text-muted">
-        <span>
-          {error ? (
-            <span id="narrative-error" className="text-urgency-critico">
-              {error}
-            </span>
-          ) : (
-            "No necesitas saber qué tipo de trámite o proceso necesitas."
-          )}
-        </span>
+      <div className="mt-2 flex items-center justify-end text-xs text-muted">
+        {error && (
+          <span id="narrative-error" className="mr-auto text-urgency-critico">
+            {error}
+          </span>
+        )}
         <span aria-hidden="true">
           {value.length}/{NARRATIVE_MAX_LENGTH}
         </span>

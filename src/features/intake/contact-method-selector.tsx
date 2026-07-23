@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Phone, Mail } from "lucide-react";
+import { MessageCircle, Mail } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,6 @@ interface ContactMethodSelectorProps {
 
 const OPTIONS: { value: ContactMethodValue; label: string; icon: typeof MessageCircle }[] = [
   { value: "whatsapp", label: "WhatsApp", icon: MessageCircle },
-  { value: "llamada", label: "Llamada", icon: Phone },
   { value: "email", label: "Correo electrónico", icon: Mail },
 ];
 
@@ -39,9 +38,9 @@ export function ContactMethodSelector({
     <div className="space-y-4">
       <div>
         <p className="mb-2 text-sm font-medium text-ink-soft">
-          ¿Cómo prefieres que te contactemos?
+          ¿Cómo prefieres que te contactemos para darte la respuesta?
         </p>
-        <div role="radiogroup" className="grid grid-cols-3 gap-2">
+        <div role="radiogroup" className="grid grid-cols-2 gap-2">
           {OPTIONS.map(({ value, label, icon: Icon }) => {
             const selected = method === value;
             return (
@@ -66,7 +65,7 @@ export function ContactMethodSelector({
         </div>
       </div>
 
-      {(method === "whatsapp" || method === "llamada") && (
+      {method === "whatsapp" && (
         <div>
           <Label htmlFor="phone">Número de celular</Label>
           <Input
