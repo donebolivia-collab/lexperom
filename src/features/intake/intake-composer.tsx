@@ -33,6 +33,12 @@ function formatSize(bytes: number): string {
 // Cada fila se ilumina con un tono suave del azul de marca al enfocarse,
 // ya que los campos individuales no tienen su propio borde para resaltar.
 const FOCUS_ROW = "transition-colors focus-within:bg-brand/[0.04]";
+// Mismo padding en las 3 filas (adjuntar, celular, nombre) para que todas
+// midan igual de alto, y mismo estilo de línea divisoria entre ellas.
+const ROW = "border-t border-brand/35 px-4 py-3";
+// Etiqueta uniforme: mismo ícono (14px), misma fuente y tamaño en las 3.
+const ROW_LABEL = "flex items-center gap-1.5 text-xs font-medium text-ink";
+const ROW_ICON = "h-3.5 w-3.5 shrink-0";
 
 /**
  * Toda la consulta en una sola tarjeta, siguiendo el patrón de los
@@ -117,39 +123,33 @@ export function IntakeComposer({
           className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-base leading-relaxed text-ink placeholder:text-muted transition-colors focus:bg-brand/[0.04] focus:outline-none focus:ring-0"
         />
 
-        <div
-          className={cn(
-            "flex items-center justify-between border-t border-brand/20 px-3 py-2",
-            FOCUS_ROW
-          )}
-        >
-          <label
-            htmlFor={attachId}
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-ink hover:bg-black/[0.05]"
-            title="Adjuntar documentos o fotografías"
-          >
-            <Paperclip className="h-4 w-4" aria-hidden="true" />
-            Adjuntar documentos
-          </label>
-          <input
-            id={attachId}
-            type="file"
-            multiple
-            accept={ALLOWED_DOCUMENT_MIME_TYPES.join(",")}
-            onChange={(e) => {
-              addFiles(e.target.files);
-              e.target.value = "";
-            }}
-            className="sr-only"
-          />
-          <span aria-hidden="true" className="text-xs text-muted">
-            {narrative.length}/{NARRATIVE_MAX_LENGTH}
-          </span>
+        <div className={cn(ROW, FOCUS_ROW)}>
+          <div className="flex items-center justify-between">
+            <label htmlFor={attachId} className={cn(ROW_LABEL, "cursor-pointer")}>
+              <Paperclip className={ROW_ICON} aria-hidden="true" />
+              Adjuntar documentos
+            </label>
+            <input
+              id={attachId}
+              type="file"
+              multiple
+              accept={ALLOWED_DOCUMENT_MIME_TYPES.join(",")}
+              onChange={(e) => {
+                addFiles(e.target.files);
+                e.target.value = "";
+              }}
+              className="sr-only"
+            />
+            <span aria-hidden="true" className="text-xs text-muted">
+              {narrative.length}/{NARRATIVE_MAX_LENGTH}
+            </span>
+          </div>
+          <p className="mt-1 text-base text-muted">PDF, Word o fotos — hasta 6 archivos, 15 MB c/u</p>
         </div>
 
-        <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
-          <label htmlFor="phone" className="flex items-center gap-1.5 text-xs font-medium text-ink">
-            <Phone className="h-4 w-4" aria-hidden="true" />
+        <div className={cn(ROW, FOCUS_ROW)}>
+          <label htmlFor="phone" className={ROW_LABEL}>
+            <Phone className={ROW_ICON} aria-hidden="true" />
             Tu número de celular
           </label>
           <input
@@ -165,9 +165,9 @@ export function IntakeComposer({
           />
         </div>
 
-        <div className={cn("border-t border-brand/20 px-4 py-3", FOCUS_ROW)}>
-          <label htmlFor="fullName" className="flex items-center gap-1.5 text-xs font-medium text-ink">
-            <User className="h-4 w-4" aria-hidden="true" />
+        <div className={cn(ROW, FOCUS_ROW)}>
+          <label htmlFor="fullName" className={ROW_LABEL}>
+            <User className={ROW_ICON} aria-hidden="true" />
             Tu nombre (opcional)
           </label>
           <input
