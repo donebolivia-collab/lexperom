@@ -12,20 +12,11 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-white/90 sm:flex">
-          <Link href="/como-funciona" className="hover:text-white">
-            Cómo funciona
-          </Link>
           <Link href="/planes" className="hover:text-white">
             Planes
           </Link>
-          <Link href="/profesional" className="hover:text-white">
-            Profesional
-          </Link>
           <Link href="/canales-contacto" className="hover:text-white">
             Contacto
-          </Link>
-          <Link href="/privacidad" className="hover:text-white">
-            Privacidad
           </Link>
         </nav>
       </div>
