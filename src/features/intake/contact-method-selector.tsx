@@ -1,13 +1,11 @@
 "use client";
 
 import { MessageCircle, Mail } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import type { ContactMethodValue } from "@/validators/consultation";
 
 interface ContactMethodSelectorProps {
-  method: ContactMethodValue | "";
+  method: ContactMethodValue;
   onMethodChange: (method: ContactMethodValue) => void;
   fullName: string;
   onFullNameChange: (value: string) => void;
@@ -18,11 +16,17 @@ interface ContactMethodSelectorProps {
   errors?: Partial<Record<"phone" | "email", string>>;
 }
 
-const OPTIONS: { value: ContactMethodValue; label: string; icon: typeof MessageCircle }[] = [
+const TABS: { value: ContactMethodValue; label: string; icon: typeof MessageCircle }[] = [
   { value: "whatsapp", label: "WhatsApp", icon: MessageCircle },
   { value: "email", label: "Correo electrónico", icon: Mail },
 ];
 
+/**
+ * Selección de contacto + campos, fusionados en una sola tarjeta con el
+ * mismo lenguaje visual que IntakeComposer: pestañas arriba, campo
+ * relevante y nombre abajo, separados por líneas internas en vez de
+ * bloques sueltos.
+ */
 export function ContactMethodSelector({
   method,
   onMethodChange,
@@ -35,26 +39,28 @@ export function ContactMethodSelector({
   errors,
 }: ContactMethodSelectorProps) {
   return (
-    <div className="space-y-4">
-      <div>
-        <p className="mb-2 text-sm font-medium text-ink">
-          ¿Cómo prefieres que te contactemos para darte la respuesta?
-        </p>
-        <div role="radiogroup" className="grid grid-cols-2 gap-2">
-          {OPTIONS.map(({ value, label, icon: Icon }) => {
+    <div>
+      <p className="mb-2 text-sm font-medium text-ink">
+        ¿Cómo prefieres que te contactemos para darte la respuesta?
+      </p>
+
+      <div className="overflow-hidden rounded-lg border-2 border-brand bg-surface shadow-sm">
+        <div role="tablist" className="flex">
+          {TABS.map(({ value, label, icon: Icon }, index) => {
             const selected = method === value;
             return (
               <button
                 key={value}
                 type="button"
-                role="radio"
-                aria-checked={selected}
+                role="tab"
+                aria-selected={selected}
                 onClick={() => onMethodChange(value)}
                 className={cn(
-                  "flex flex-col items-center gap-1.5 rounded-lg border px-3 py-3 text-xs font-medium transition-colors",
+                  "flex flex-1 items-center justify-center gap-2 py-3 text-sm font-medium transition-colors",
+                  index === 0 && "border-r border-line",
                   selected
-                    ? "border-brand bg-brand/[0.05] text-brand"
-                    : "border-line text-ink-soft hover:bg-black/[0.03]"
+                    ? "bg-brand text-brand-foreground"
+                    : "bg-surface text-ink-soft hover:bg-black/[0.03]"
                 )}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
@@ -63,53 +69,65 @@ export function ContactMethodSelector({
             );
           })}
         </div>
-      </div>
 
-      {method === "whatsapp" && (
-        <div>
-          <Label htmlFor="phone">Número de celular</Label>
-          <Input
-            id="phone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="Ej. 71234567"
-            value={phone}
-            onChange={(e) => onPhoneChange(e.target.value)}
-            aria-invalid={Boolean(errors?.phone)}
-          />
-          {errors?.phone && <p className="mt-1 text-xs text-urgency-critico">{errors.phone}</p>}
-        </div>
-      )}
+        {method === "whatsapp" && (
+          <div className="border-t border-line px-4 py-3">
+            <label htmlFor="phone" className="block text-xs font-medium text-muted">
+              Número de celular
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              placeholder="Ej. 71234567"
+              value={phone}
+              onChange={(e) => onPhoneChange(e.target.value)}
+              aria-invalid={Boolean(errors?.phone)}
+              className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+            />
+          </div>
+        )}
 
-      {method === "email" && (
-        <div>
-          <Label htmlFor="email">Correo electrónico</Label>
-          <Input
-            id="email"
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            placeholder="tucorreo@ejemplo.com"
-            value={email}
-            onChange={(e) => onEmailChange(e.target.value)}
-            aria-invalid={Boolean(errors?.email)}
-          />
-          {errors?.email && <p className="mt-1 text-xs text-urgency-critico">{errors.email}</p>}
-        </div>
-      )}
+        {method === "email" && (
+          <div className="border-t border-line px-4 py-3">
+            <label htmlFor="email" className="block text-xs font-medium text-muted">
+              Correo electrónico
+            </label>
+            <input
+              id="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="tucorreo@ejemplo.com"
+              value={email}
+              onChange={(e) => onEmailChange(e.target.value)}
+              aria-invalid={Boolean(errors?.email)}
+              className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+            />
+          </div>
+        )}
 
-      {method && (
-        <div>
-          <Label htmlFor="fullName">Tu nombre (opcional)</Label>
-          <Input
+        <div className="border-t border-line px-4 py-3">
+          <label htmlFor="fullName" className="block text-xs font-medium text-muted">
+            Tu nombre (opcional)
+          </label>
+          <input
             id="fullName"
             autoComplete="name"
             placeholder="¿Cómo te llamas?"
             value={fullName}
             onChange={(e) => onFullNameChange(e.target.value)}
+            className="mt-1 w-full border-0 bg-transparent p-0 text-base text-ink placeholder:text-muted focus:outline-none focus:ring-0"
           />
         </div>
+      </div>
+
+      {errors?.phone && method === "whatsapp" && (
+        <p className="mt-1.5 text-xs text-urgency-critico">{errors.phone}</p>
+      )}
+      {errors?.email && method === "email" && (
+        <p className="mt-1.5 text-xs text-urgency-critico">{errors.email}</p>
       )}
     </div>
   );

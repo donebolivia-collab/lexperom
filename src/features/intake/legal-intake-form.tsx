@@ -17,7 +17,7 @@ export function LegalIntakeForm() {
 
   const [narrative, setNarrative] = useState("");
   const [files, setFiles] = useState<File[]>([]);
-  const [contactMethod, setContactMethod] = useState<ContactMethodValue | "">("");
+  const [contactMethod, setContactMethod] = useState<ContactMethodValue>("whatsapp");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ export function LegalIntakeForm() {
   function applyDraft() {
     if (!restoredDraft) return;
     setNarrative(restoredDraft.narrative);
-    setContactMethod(restoredDraft.contactMethod || "");
+    setContactMethod(restoredDraft.contactMethod || "whatsapp");
     setFullName(restoredDraft.fullName || "");
     setPhone(restoredDraft.phone || "");
     setEmail(restoredDraft.email || "");
@@ -66,9 +66,7 @@ export function LegalIntakeForm() {
     if (narrative.trim().length < NARRATIVE_MIN_LENGTH) {
       errors.narrative = "Cuéntanos un poco más sobre lo que ocurrió para poder ayudarte.";
     }
-    if (!contactMethod) {
-      errors.contactMethod = "Elige cómo prefieres que te contactemos.";
-    } else if (contactMethod === "whatsapp" && !phone.trim()) {
+    if (contactMethod === "whatsapp" && !phone.trim()) {
       errors.phone = "Ingresa un número de celular para contactarte.";
     } else if (contactMethod === "email" && !email.trim()) {
       errors.email = "Ingresa un correo electrónico para contactarte.";
@@ -172,9 +170,6 @@ export function LegalIntakeForm() {
         onEmailChange={setEmail}
         errors={{ phone: fieldErrors.phone, email: fieldErrors.email }}
       />
-      {fieldErrors.contactMethod && (
-        <p className="-mt-4 text-xs text-urgency-critico">{fieldErrors.contactMethod}</p>
-      )}
 
       <PrivacyConsent checked={consent} onChange={setConsent} error={fieldErrors.consent} />
 
