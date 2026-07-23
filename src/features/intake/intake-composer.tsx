@@ -84,8 +84,8 @@ export function IntakeComposer({
         }}
         className={cn(
           "overflow-hidden rounded-lg border-2 bg-surface shadow-sm transition-colors",
-          narrativeError ? "border-urgency-critico" : "border-header-accent",
-          isDragging && "bg-header-accent/[0.03]"
+          narrativeError ? "border-urgency-critico" : "border-brand",
+          isDragging && "bg-brand/[0.03]"
         )}
       >
         <textarea
@@ -97,7 +97,7 @@ export function IntakeComposer({
           aria-label="Describe tu problema legal"
           aria-invalid={Boolean(narrativeError)}
           aria-describedby={narrativeError ? "narrative-error" : undefined}
-          className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-lg leading-relaxed text-ink placeholder:text-muted focus:outline-none focus:ring-0"
+          className="h-[154px] w-full resize-none border-0 bg-transparent px-4 py-3 text-base leading-relaxed text-ink placeholder:text-muted focus:outline-none focus:ring-0"
         />
 
         <div className="flex items-center justify-between border-t border-line px-3 py-2">

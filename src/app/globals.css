@@ -2,8 +2,9 @@
 
 :root {
   /* Fondo blanco puro en todo el sitio (pedido del cliente: el menor ruido
-     visual posible, tipo página de buscador). El único color fuerte es el
-     acento del bloque superior (header). */
+     visual posible, tipo página de buscador). Un solo azul de marca en
+     todo el sitio (header incluido) — antes hubo un tono aparte para el
+     header que terminaba compitiendo visualmente con este; se unificó. */
   --color-ink: #14161a;
   --color-ink-soft: #4b5060;
   --color-paper: #ffffff;
@@ -22,12 +23,6 @@
   --color-urgency-alto: #b5651d;
   --color-urgency-medio: #96751c;
   --color-urgency-bajo: #3a6b52;
-
-  /* Acento del bloque superior (header) de Lexperom: azul marino oscuro,
-     más acorde a la seriedad de una plataforma legal que el naranja
-     probado antes. Acotado al header: no reemplaza --color-brand. */
-  --color-header-accent: #0f172a;
-  --color-header-accent-soft: #1e293b;
 }
 
 @theme inline {
@@ -45,8 +40,6 @@
   --color-urgency-alto: var(--color-urgency-alto);
   --color-urgency-medio: var(--color-urgency-medio);
   --color-urgency-bajo: var(--color-urgency-bajo);
-  --color-header-accent: var(--color-header-accent);
-  --color-header-accent-soft: var(--color-header-accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

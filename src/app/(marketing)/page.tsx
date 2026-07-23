@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/features/home/hero";
-import { TrustStrip } from "@/features/home/trust-strip";
-import { HowItWorks } from "@/features/home/how-it-works";
-import { ProfessionalProfile } from "@/features/home/professional-profile";
-import { PracticeAreas } from "@/features/home/practice-areas";
-import { Faq } from "@/features/home/faq";
-import { FinalCta } from "@/features/home/final-cta";
+import { PlansSection } from "@/features/plans/plans-section";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -37,12 +32,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
-      <TrustStrip />
-      <HowItWorks />
-      <ProfessionalProfile />
-      <PracticeAreas />
-      <Faq />
-      <FinalCta />
+      <PlansSection showFaq={false} />
     </>
   );
 }
