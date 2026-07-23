@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
-// Botones tipo píldora de dos líneas naturales (frase de dos palabras que
-// se parte en su punto natural), inspirados en el estilo de navbar de
-// Lidiare — no una palabra corta forzada a partirse.
-const NAV_BUTTON =
-  "flex flex-col items-center justify-center rounded-lg border border-white/25 px-3.5 py-1.5 text-center text-xs font-medium leading-tight text-white transition-colors hover:bg-white/10";
+// Calcado del estilo de navbar de Lidiare: enlaces de texto puro (sin
+// botón/borde), dos líneas en mayúsculas, primera línea suave y segunda
+// en negrita — adaptado a nuestro header azul con texto blanco (ellos
+// usan gris/negro sobre blanco).
+const NAV_ITEM = "flex flex-col items-start text-left uppercase leading-tight tracking-wide";
 
 export function SiteHeader() {
   return (
@@ -17,14 +17,14 @@ export function SiteHeader() {
           {siteConfig.logo.wordmarkText}
         </Link>
 
-        <nav className="hidden items-center gap-3 sm:flex">
-          <Link href="/planes" className={NAV_BUTTON}>
-            <span>Nuestros</span>
-            <span>Planes</span>
+        <nav className="hidden items-center gap-8 sm:flex">
+          <Link href="/planes" className={NAV_ITEM}>
+            <span className="text-sm font-normal text-white/70">Nuestros</span>
+            <span className="text-sm font-bold text-white">Planes</span>
           </Link>
-          <Link href="/canales-contacto" className={NAV_BUTTON}>
-            <span>Canales</span>
-            <span>de Contacto</span>
+          <Link href="/canales-contacto" className={NAV_ITEM}>
+            <span className="text-sm font-normal text-white/70">Canales</span>
+            <span className="text-sm font-bold text-white">de Contacto</span>
           </Link>
         </nav>
       </div>
