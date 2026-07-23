@@ -116,11 +116,11 @@ export function IntakeComposer({
         <div className="flex items-center justify-between border-t border-line px-3 py-2">
           <label
             htmlFor={attachId}
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-md p-1.5 text-muted hover:bg-black/[0.05] hover:text-ink-soft"
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-muted hover:bg-black/[0.05] hover:text-ink-soft"
             title="Adjuntar documentos o fotografías"
           >
             <Paperclip className="h-4 w-4" aria-hidden="true" />
-            <span className="sr-only">Adjuntar documentos o fotografías</span>
+            Adjuntar documentos
           </label>
           <input
             id={attachId}
@@ -139,7 +139,7 @@ export function IntakeComposer({
         </div>
 
         <div className="border-t border-line px-4 py-3">
-          <label htmlFor="phone" className="block text-xs font-medium text-muted">
+          <label htmlFor="phone" className="block text-xs font-medium text-ink">
             Tu WhatsApp
           </label>
           <input
@@ -156,7 +156,7 @@ export function IntakeComposer({
         </div>
 
         <div className="border-t border-line px-4 py-3">
-          <label htmlFor="fullName" className="block text-xs font-medium text-muted">
+          <label htmlFor="fullName" className="block text-xs font-medium text-ink">
             Tu nombre (opcional)
           </label>
           <input

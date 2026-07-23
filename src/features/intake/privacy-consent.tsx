@@ -12,7 +12,7 @@ interface PrivacyConsentProps {
 export function PrivacyConsent({ checked, onChange, error }: PrivacyConsentProps) {
   return (
     <div>
-      <label className="flex items-start gap-3 text-sm text-ink-soft">
+      <label className="flex items-start gap-3 text-sm text-ink">
         <Checkbox
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
