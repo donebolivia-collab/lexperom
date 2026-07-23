@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { NARRATIVE_MAX_LENGTH } from "@/validators/consultation";
 
@@ -12,19 +11,9 @@ interface ProblemTextareaProps {
 }
 
 export function ProblemTextarea({ value, onChange, autoFocus, error }: ProblemTextareaProps) {
-  const ref = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.height = "auto";
-    el.style.height = `${Math.max(el.scrollHeight, 154)}px`;
-  }, [value]);
-
   return (
     <div>
       <Textarea
-        ref={ref}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Detalla tu consulta aquí. Un abogado la revisará y te responderá."
@@ -34,7 +23,7 @@ export function ProblemTextarea({ value, onChange, autoFocus, error }: ProblemTe
         aria-label="Describe tu problema legal"
         aria-invalid={Boolean(error)}
         aria-describedby={error ? "narrative-error" : undefined}
-        className="min-h-[154px] resize-none border-2 border-header-accent text-lg leading-relaxed shadow-sm"
+        className="h-[154px] resize-none overflow-y-auto border-2 border-header-accent text-lg leading-relaxed shadow-sm"
       />
       <div className="mt-2 flex items-center justify-end text-xs text-muted">
         {error && (

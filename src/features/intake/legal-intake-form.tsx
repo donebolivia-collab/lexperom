@@ -165,12 +165,7 @@ export function LegalIntakeForm() {
 
       {stage === "details" && (
         <div className="space-y-6 border-t border-line pt-6">
-          <div>
-            <p className="mb-2 text-sm font-medium text-ink-soft">
-              ¿Tienes documentos relacionados?
-            </p>
-            <DocumentUploader files={files} onChange={setFiles} />
-          </div>
+          <DocumentUploader files={files} onChange={setFiles} />
 
           <ContactMethodSelector
             method={contactMethod}

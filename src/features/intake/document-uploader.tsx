@@ -1,8 +1,7 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 import { Paperclip, X, FileText, Image as ImageIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   ALLOWED_DOCUMENT_MIME_TYPES,
@@ -23,7 +22,6 @@ function formatSize(bytes: number): string {
 
 export function DocumentUploader({ files, onChange }: DocumentUploaderProps) {
   const inputId = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -67,21 +65,18 @@ export function DocumentUploader({ files, onChange }: DocumentUploaderProps) {
           setIsDragging(false);
           addFiles(e.dataTransfer.files);
         }}
-        className={cn(
-          "flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-line px-6 py-8 text-center transition-colors",
-          isDragging && "border-brand bg-brand/[0.03]"
-        )}
       >
-        <Paperclip className="h-5 w-5 text-muted" aria-hidden="true" />
-        <p className="text-sm text-ink-soft">
-          Arrastra tus archivos aquí o
-          <label htmlFor={inputId} className="ml-1 cursor-pointer font-medium text-brand hover:underline">
-            adjúntalos desde tu dispositivo
-          </label>
-        </p>
-        <p className="text-xs text-muted">PDF, Word, o fotos — hasta {MAX_FILES} archivos, 15 MB c/u</p>
+        <label
+          htmlFor={inputId}
+          className={cn(
+            "inline-flex cursor-pointer items-center gap-1.5 text-sm font-medium text-brand hover:underline",
+            isDragging && "text-header-accent"
+          )}
+        >
+          <Paperclip className="h-4 w-4" aria-hidden="true" />
+          Adjuntar documentos o fotografías (opcional)
+        </label>
         <input
-          ref={inputRef}
           id={inputId}
           type="file"
           multiple
@@ -92,20 +87,12 @@ export function DocumentUploader({ files, onChange }: DocumentUploaderProps) {
           }}
           className="sr-only"
         />
-        <Button
-          type="button"
-          variant="secondary"
-          size="sm"
-          onClick={() => inputRef.current?.click()}
-        >
-          Adjuntar documentos o fotografías
-        </Button>
       </div>
 
       {error && <p className="mt-2 text-xs text-urgency-critico">{error}</p>}
 
       {files.length > 0 && (
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-3 space-y-2">
           {files.map((file, index) => (
             <li
               key={`${file.name}-${index}`}
