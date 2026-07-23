@@ -2,8 +2,7 @@
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import { ProblemTextarea } from "./problem-textarea";
-import { DocumentUploader } from "./document-uploader";
+import { IntakeComposer } from "./intake-composer";
 import { ContactMethodSelector } from "./contact-method-selector";
 import { PrivacyConsent } from "./privacy-consent";
 import { SubmissionConfirmation } from "./submission-confirmation";
@@ -13,12 +12,9 @@ import { captureAttributionOnce, getStoredAttribution } from "@/lib/attribution"
 import { NARRATIVE_MIN_LENGTH, type ContactMethodValue } from "@/validators/consultation";
 import type { SubmitConsultationResult } from "@/types/intake";
 
-type Stage = "narrative" | "details";
-
 export function LegalIntakeForm() {
   const { restoredDraft, saveDraft, clearDraft } = useIntakeDraft();
 
-  const [stage, setStage] = useState<Stage>("narrative");
   const [narrative, setNarrative] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [contactMethod, setContactMethod] = useState<ContactMethodValue | "">("");
@@ -64,8 +60,6 @@ export function LegalIntakeForm() {
     if (!narrative) return;
     saveDraft({ narrative, contactMethod, fullName, phone, email });
   }, [narrative, contactMethod, fullName, phone, email, saveDraft]);
-
-  const canContinue = narrative.trim().length >= NARRATIVE_MIN_LENGTH;
 
   function validateBeforeSubmit(): boolean {
     const errors: Partial<Record<string, string>> = {};
@@ -155,52 +149,47 @@ export function LegalIntakeForm() {
         </div>
       )}
 
-      <ProblemTextarea value={narrative} onChange={setNarrative} autoFocus error={fieldErrors.narrative} />
+      <IntakeComposer
+        narrative={narrative}
+        onNarrativeChange={setNarrative}
+        files={files}
+        onFilesChange={setFiles}
+        autoFocus
+        narrativeError={fieldErrors.narrative}
+      />
 
-      {stage === "narrative" && (
-        <Button type="button" disabled={!canContinue} onClick={() => setStage("details")}>
-          Continuar
-        </Button>
+      <ContactMethodSelector
+        method={contactMethod}
+        onMethodChange={(value) => {
+          setContactMethod(value);
+          setFieldErrors((prev) => ({ ...prev, contactMethod: undefined }));
+        }}
+        fullName={fullName}
+        onFullNameChange={setFullName}
+        phone={phone}
+        onPhoneChange={setPhone}
+        email={email}
+        onEmailChange={setEmail}
+        errors={{ phone: fieldErrors.phone, email: fieldErrors.email }}
+      />
+      {fieldErrors.contactMethod && (
+        <p className="-mt-4 text-xs text-urgency-critico">{fieldErrors.contactMethod}</p>
       )}
 
-      {stage === "details" && (
-        <div className="space-y-6 border-t border-line pt-6">
-          <DocumentUploader files={files} onChange={setFiles} />
+      <PrivacyConsent checked={consent} onChange={setConsent} error={fieldErrors.consent} />
 
-          <ContactMethodSelector
-            method={contactMethod}
-            onMethodChange={(value) => {
-              setContactMethod(value);
-              setFieldErrors((prev) => ({ ...prev, contactMethod: undefined }));
-            }}
-            fullName={fullName}
-            onFullNameChange={setFullName}
-            phone={phone}
-            onPhoneChange={setPhone}
-            email={email}
-            onEmailChange={setEmail}
-            errors={{ phone: fieldErrors.phone, email: fieldErrors.email }}
-          />
-          {fieldErrors.contactMethod && (
-            <p className="-mt-4 text-xs text-urgency-critico">{fieldErrors.contactMethod}</p>
-          )}
-
-          <PrivacyConsent checked={consent} onChange={setConsent} error={fieldErrors.consent} />
-
-          {submitError && (
-            <div
-              role="alert"
-              className="rounded-lg border border-urgency-critico/30 bg-urgency-critico/[0.06] px-4 py-3 text-sm text-urgency-critico"
-            >
-              {submitError}
-            </div>
-          )}
-
-          <Button type="submit" size="lg" disabled={isPending} className="w-full sm:w-auto">
-            {isPending ? "Enviando…" : "Enviar mi consulta"}
-          </Button>
+      {submitError && (
+        <div
+          role="alert"
+          className="rounded-lg border border-urgency-critico/30 bg-urgency-critico/[0.06] px-4 py-3 text-sm text-urgency-critico"
+        >
+          {submitError}
         </div>
       )}
+
+      <Button type="submit" size="lg" disabled={isPending} className="w-full sm:w-auto">
+        {isPending ? "Enviando…" : "Enviar mi consulta"}
+      </Button>
     </form>
   );
 }
