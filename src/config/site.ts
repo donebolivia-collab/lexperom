@@ -38,10 +38,15 @@ export const siteConfig = {
     wordmarkText: "Lexperom",
   },
 
-  /** Datos de contacto público. Placeholders explícitos — no inventar. */
+  /**
+   * Datos de contacto público. WhatsApp/teléfono son reales (mismo número
+   * para ambos). Correo, dirección y ciudad siguen como placeholders
+   * explícitos hasta contar con datos reales — no inventar.
+   */
   contact: {
-    whatsapp: "[WHATSAPP_PENDIENTE]",
-    phone: "[TELEFONO_PENDIENTE]",
+    whatsapp: "67725694",
+    phone: "67725694",
+    countryCode: "591",
     email: "[EMAIL_PENDIENTE]",
     address: "[DIRECCION_PENDIENTE]",
     city: "[CIUDAD_PENDIENTE]",

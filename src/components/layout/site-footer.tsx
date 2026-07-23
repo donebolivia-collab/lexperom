@@ -12,6 +12,9 @@ export function SiteFooter() {
           </div>
 
           <nav className="flex flex-col gap-2 text-sm text-ink-soft sm:items-end">
+            <Link href="/canales-contacto" className="hover:text-ink">
+              Canales de contacto
+            </Link>
             <Link href="/planes" className="hover:text-ink">
               Planes
             </Link>
