@@ -18,6 +18,9 @@ export function SiteHeader() {
           <Link href="/como-funciona" className="hover:text-white">
             Cómo funciona
           </Link>
+          <Link href="/planes" className="hover:text-white">
+            Planes
+          </Link>
           <Link href="/profesional" className="hover:text-white">
             Profesional
           </Link>
@@ -27,7 +30,7 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          href="#consulta"
+          href="/#consulta"
           className={cn(
             buttonVariants({ variant: "secondary", size: "sm" }),
             "bg-white text-header-accent hover:bg-white/90"
