@@ -12,7 +12,7 @@ import { LexperomLogo } from "@/components/brand/lexperom-logo";
 const NAV_ITEM = "flex flex-col items-start text-left uppercase leading-tight tracking-wide";
 
 const NAV_LINKS = [
-  { href: "/soluciones-legales", top: "Soluciones", bottom: "Legales" },
+  { href: "/soluciones-legales", top: "Nuestros", bottom: "Servicios" },
   { href: "/planes", top: "Nuestros", bottom: "Planes" },
   { href: "/canales-contacto", top: "Canales", bottom: "de Contacto" },
 ];
