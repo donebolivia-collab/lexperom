@@ -13,12 +13,11 @@ const EQUIPO_PARAGRAPHS = [
   "En Lexperom combinamos el conocimiento jurídico tradicional con herramientas digitales de vanguardia para dar soluciones legales reales y accesibles. Rompemos los modelos tradicionales de asesoría legal para ofrecer alternativas alineadas con las nuevas tecnologías, sin dejar de lado la seriedad y el criterio profesional que cualquier caso merece.",
 ];
 
-const MODELO_PARAGRAPHS = [
-  "Cobramos por planes de protección legal, y ese ingreso es justamente lo que nos permite seguir aquí, mejorar y llegar a más personas cada mes. Pero no queremos que la capacidad de pagar decida quién accede a la justicia.",
-  "Tu primera consulta siempre es gratuita.",
-  "Cuando un caso necesita más que una orientación inicial, ahí entra el Cupo Social Lexperom. Cada mes garantizamos al menos un cupo, y ese número crece con nosotros. Por cada 20 membresías activas ese mes, se suma uno más. Entre más personas confían en Lexperom, más personas podemos ayudar.",
-  "Antes de asignar un cupo, evaluamos el caso con la misma seriedad que cualquier otro. De ahí sale si corresponde una tarifa social o si queda completamente gratuito, según la situación de cada persona. Y si ya se llenó el cupo del mes, te lo decimos tal cual, y quedas primero en la fila para el siguiente mes.",
-];
+const MODELO_INTRO =
+  "Cobramos por planes de protección legal, y ese ingreso es justamente lo que nos permite seguir aquí, mejorar y llegar a más personas cada mes. Pero no queremos que la capacidad de pagar decida quién accede a la justicia.";
+
+const MODELO_CIERRE =
+  "Antes de asignar un cupo, evaluamos el caso con la misma seriedad que cualquier otro. De ahí sale si corresponde una tarifa social o si queda completamente gratuito, según la situación de cada persona.";
 
 export default function NuestroPropositoPage() {
   return (
@@ -86,7 +85,10 @@ export default function NuestroPropositoPage() {
             </h2>
             <div className="mt-5 space-y-4">
               {EQUIPO_PARAGRAPHS.map((paragraph) => (
-                <p key={paragraph} className="text-sm leading-relaxed text-ink sm:text-base">
+                <p
+                  key={paragraph}
+                  className="text-justify text-sm leading-relaxed text-ink sm:text-base"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -100,14 +102,25 @@ export default function NuestroPropositoPage() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Un modelo con función social
+              Nuestro Compromiso Social
             </h2>
             <div className="mt-5 space-y-4">
-              {MODELO_PARAGRAPHS.map((paragraph) => (
-                <p key={paragraph} className="text-sm leading-relaxed text-ink sm:text-base">
-                  {paragraph}
-                </p>
-              ))}
+              <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
+                {MODELO_INTRO}
+              </p>
+              <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
+                Cuando un caso requiere ir más allá de la orientación inicial y detectamos que la
+                persona o familia se encuentra en una situación de vulnerabilidad sin la
+                posibilidad de pagar las diligencias posteriores, entra en juego nuestro{" "}
+                <strong className="font-semibold text-brand">Cupo Social Lexperom</strong>.
+                Garantizamos al menos un cupo cada mes, pero ese número crece a la par con
+                nosotros: por cada 20 membresías activas, sumamos un cupo adicional. Así de
+                simple: cuantas más personas confían en Lexperom, a más personas que realmente lo
+                necesitan podemos brindar amparo y protección.
+              </p>
+              <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
+                {MODELO_CIERRE}
+              </p>
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg lg:order-2">
