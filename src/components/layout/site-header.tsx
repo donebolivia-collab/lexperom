@@ -23,7 +23,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-brand">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" onClick={() => setMenuOpen(false)}>
+        <Link href="/" onClick={() => setMenuOpen(false)} className="inline-flex items-center">
           <LexperomLogo />
         </Link>
 
