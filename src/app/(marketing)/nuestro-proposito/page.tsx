@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
-import { LexperomShield } from "@/components/brand/lexperom-shield";
 
 export const metadata: Metadata = {
   title: `Nuestro Equipo — ${siteConfig.siteName}`,
@@ -37,7 +36,7 @@ export default function NuestroPropositoPage() {
               justicia no debe ser un privilegio reservado únicamente para quienes conocen las
               reglas del sistema; por eso, brindamos un trato cálido y humano, entendiendo a fondo
               las necesidades de cada persona para acompañarla y encontrar la solución exacta que
-              su caso requiere.
+              su caso requiere. La primera consulta en Lexperom siempre será gratuita.
             </p>
           </div>
 
@@ -52,23 +51,12 @@ export default function NuestroPropositoPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -left-4 flex items-center gap-3 rounded-xl bg-ink/90 px-5 py-4 shadow-xl backdrop-blur sm:-left-8">
-              <LexperomShield className="h-9 w-9 shrink-0 text-white" />
-              <div>
-                <p className="text-sm font-semibold leading-tight text-white">
-                  Primera consulta
-                </p>
-                <p className="text-sm font-semibold leading-tight text-white">
-                  siempre gratuita
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Nuestro equipo */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
             <Image
@@ -98,7 +86,7 @@ export default function NuestroPropositoPage() {
       </section>
 
       {/* Un modelo con función social */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <section className="mx-auto max-w-6xl px-4 pb-16 pt-0 sm:px-6 sm:pb-24">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
@@ -114,7 +102,7 @@ export default function NuestroPropositoPage() {
                 posibilidad de pagar las diligencias posteriores, entra en juego nuestro{" "}
                 <strong className="font-semibold text-brand">Cupo Social Lexperom</strong>.
                 Garantizamos al menos un cupo cada mes, pero ese número crece a la par con
-                nosotros: por cada 20 membresías activas, sumamos un cupo adicional. Así de
+                nosotros, por cada 20 membresías activas, sumamos un cupo adicional. Así de
                 simple: cuantas más personas confían en Lexperom, a más personas que realmente lo
                 necesitan podemos brindar amparo y protección.
               </p>
