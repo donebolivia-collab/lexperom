@@ -15,9 +15,6 @@ const EQUIPO_PARAGRAPHS = [
 const MODELO_INTRO =
   "Cobramos por planes de protección legal, y ese ingreso es justamente lo que nos permite seguir aquí, mejorar y llegar a más personas cada mes. Pero no queremos que la capacidad de pagar decida quién accede a la justicia.";
 
-const MODELO_CIERRE =
-  "Antes de asignar un cupo, evaluamos el caso con la misma seriedad que cualquier otro. De ahí sale si corresponde una tarifa social o si queda completamente gratuito, según la situación de cada persona.";
-
 export default function NuestroPropositoPage() {
   return (
     <div>
@@ -36,7 +33,7 @@ export default function NuestroPropositoPage() {
               justicia no debe ser un privilegio reservado únicamente para quienes conocen las
               reglas del sistema; por eso, brindamos un trato cálido y humano, entendiendo a fondo
               las necesidades de cada persona para acompañarla y encontrar la solución exacta que
-              su caso requiere. La primera consulta en Lexperom siempre será gratuita.
+              su caso requiere. La primera consulta en Lexperom siempre es gratuita.
             </p>
           </div>
 
@@ -103,11 +100,8 @@ export default function NuestroPropositoPage() {
                 <strong className="font-semibold text-brand">Cupo Social Lexperom</strong>.
                 Garantizamos al menos un cupo cada mes, pero ese número crece a la par con
                 nosotros, por cada 20 membresías activas, sumamos un cupo adicional. Así de
-                simple: cuantas más personas confían en Lexperom, a más personas que realmente lo
+                simple, cuantas más personas confían en Lexperom, a más personas que realmente lo
                 necesitan podemos brindar amparo y protección.
-              </p>
-              <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
-                {MODELO_CIERRE}
               </p>
             </div>
           </div>
