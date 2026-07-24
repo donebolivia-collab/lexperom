@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { LexperomLogo } from "@/components/brand/lexperom-logo";
 
 // Calcado del estilo de navbar de Lidiare: enlaces de texto puro (sin
 // botón/borde), dos líneas en mayúsculas, primera línea suave y segunda
@@ -23,8 +23,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-brand">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-white" onClick={() => setMenuOpen(false)}>
-          {siteConfig.logo.wordmarkText}
+        <Link href="/" onClick={() => setMenuOpen(false)}>
+          <LexperomLogo />
         </Link>
 
         <nav className="hidden items-center gap-8 sm:flex">
@@ -51,9 +51,7 @@ export function SiteHeader() {
       {menuOpen && (
         <div className="fixed inset-0 z-50 flex flex-col bg-brand sm:hidden">
           <div className="flex h-16 items-center justify-between px-4">
-            <span className="text-lg font-semibold tracking-tight text-white">
-              {siteConfig.logo.wordmarkText}
-            </span>
+            <LexperomLogo />
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
