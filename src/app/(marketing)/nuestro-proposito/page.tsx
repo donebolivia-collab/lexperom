@@ -28,16 +28,17 @@ export default function NuestroPropositoPage() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
           <div className="order-2 lg:order-1">
             <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Lex perfugium omnibus
+              Lex, perfugium omnibus
             </h1>
-            <p className="mt-6 text-sm leading-relaxed text-white/80 sm:text-base">
-              Lexperom nace de la máxima en latín Lex, perfugium omnibus, cuya traducción es la
-              ley como refugio para todos y define nuestra razón de ser. Asumimos el compromiso
-              firme de convertir el derecho en un espacio verdaderamente accesible, transparente y
-              protector. Creemos que la justicia no debe ser un privilegio reservado únicamente
-              para quienes conocen las reglas del sistema. Por eso nos enfocamos en brindar un
-              trato cálido y humano, entendiendo a fondo las necesidades de cada persona para
-              acompañarla y encontrar la solución exacta que su caso requiere.
+            <p className="mt-6 text-justify text-sm leading-relaxed text-white/80 sm:text-base">
+              Lexperom nace bajo la inspiración del latín <em className="italic">Lex, perfugium
+              omnibus</em>, que se traduce como «la ley, refugio para todos», un principio que
+              define nuestra razón de ser. Asumimos el compromiso firme de convertir el derecho en
+              un espacio verdaderamente accesible, transparente y protector. Creemos que la
+              justicia no debe ser un privilegio reservado únicamente para quienes conocen las
+              reglas del sistema; por eso, brindamos un trato cálido y humano, entendiendo a fondo
+              las necesidades de cada persona para acompañarla y encontrar la solución exacta que
+              su caso requiere.
             </p>
           </div>
 
