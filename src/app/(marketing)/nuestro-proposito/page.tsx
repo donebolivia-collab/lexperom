@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { buttonVariants } from "@/components/ui/button";
 import { LexperomShield } from "@/components/brand/lexperom-shield";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: `Nuestro Equipo — ${siteConfig.siteName}`,
@@ -14,7 +11,6 @@ export const metadata: Metadata = {
 
 const EQUIPO_PARAGRAPHS = [
   "En Lexperom combinamos el conocimiento jurídico tradicional con herramientas digitales de vanguardia para dar soluciones legales reales y accesibles. Rompemos los modelos tradicionales de asesoría legal para ofrecer alternativas alineadas con las nuevas tecnologías, sin dejar de lado la seriedad y el criterio profesional que cualquier caso merece.",
-  "Tenemos oficina física, y puedes contactarnos también por llamada, WhatsApp, correo electrónico, Telegram o nuestra página web, el canal que te resulte más cómodo. Apenas nos escribes, tu caso llega ya ordenado a manos del abogado que te va a atender, así no tienes que repetir tu historia dos veces ni esperar que alguien más lo derive.",
 ];
 
 const MODELO_PARAGRAPHS = [
@@ -31,36 +27,18 @@ export default function NuestroPropositoPage() {
       <section className="relative overflow-hidden bg-brand-strong">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
           <div className="order-2 lg:order-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-              Nuestro Equipo
-            </p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Lex perfugium omnibus
             </h1>
             <p className="mt-6 text-sm leading-relaxed text-white/80 sm:text-base">
-              El nombre Lexperom viene de esa frase en latín, que se traduce como &ldquo;la ley,
-              refugio para todos&rdquo;. Tomamos LEX de Lex (la ley), PER de Perfugium (refugio) y
-              OM de Omnibus (para todos), y las unimos en un solo nombre porque resume lo que
-              queremos ser: un lugar al que cualquier persona pueda llegar cuando el derecho la
-              protege, sin importar cuánto sabe, a quién conoce o dónde nació. Para nosotros la
-              justicia es un derecho de todos, no el resultado de tener los contactos correctos o
-              saber moverte dentro de un sistema que a veces parece hecho para que solo unos pocos
-              lo entiendan. Ese principio guía cada decisión que tomamos en Lexperom.
+              Lexperom nace de la máxima en latín Lex, perfugium omnibus, cuya traducción es la
+              ley como refugio para todos y define nuestra razón de ser. Asumimos el compromiso
+              firme de convertir el derecho en un espacio verdaderamente accesible, transparente y
+              protector. Creemos que la justicia no debe ser un privilegio reservado únicamente
+              para quienes conocen las reglas del sistema. Por eso nos enfocamos en brindar un
+              trato cálido y humano, entendiendo a fondo las necesidades de cada persona para
+              acompañarla y encontrar la solución exacta que su caso requiere.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/#consulta" className={buttonVariants({ variant: "primary", size: "lg" })}>
-                Cuéntanos tu caso
-              </Link>
-              <Link
-                href="/planes"
-                className={cn(
-                  buttonVariants({ variant: "secondary", size: "lg" }),
-                  "border-white/20 bg-white/5 text-white hover:bg-white/10"
-                )}
-              >
-                Ver planes
-              </Link>
-            </div>
           </div>
 
           <div className="relative order-1 lg:order-2">
@@ -102,10 +80,7 @@ export default function NuestroPropositoPage() {
             />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-              Cómo trabajamos
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               Nuestro equipo
             </h2>
             <div className="mt-5 space-y-4">
@@ -119,32 +94,11 @@ export default function NuestroPropositoPage() {
         </div>
       </section>
 
-      {/* El problema: bloque plano, sin imagen, para el contraste */}
-      <section className="bg-black/[0.03]">
-        <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6 sm:py-20">
-          <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            El problema
-          </h2>
-          <p className="mt-5 text-sm leading-relaxed text-ink sm:text-base">
-            Mucha gente en Bolivia convive con un problema legal sin buscar ayuda. No porque no
-            exista una solución, sino porque no sabe cuánto le va a costar, teme que un abogado la
-            complique más, o simplemente no sabe por dónde empezar. El resultado es siempre el
-            mismo: se queda callada y acepta algo injusto.
-          </p>
-          <p className="mt-4 text-base font-semibold leading-relaxed text-ink sm:text-lg">
-            Ese silencio es el problema que queremos resolver.
-          </p>
-        </div>
-      </section>
-
       {/* Un modelo con función social */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-              Cupo Social Lexperom
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               Un modelo con función social
             </h2>
             <div className="mt-5 space-y-4">
