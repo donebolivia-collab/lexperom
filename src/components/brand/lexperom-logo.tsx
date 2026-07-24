@@ -4,27 +4,33 @@ interface LexperomLogoProps {
   className?: string;
 }
 
-// Dimensiones reales del archivo exportado (public/brand/lexperom-horizontal.png).
-const LOGO_WIDTH = 4000;
-const LOGO_HEIGHT = 818;
+// Recorte solo-escudo de public/brand/lexperom-horizontal.png (mismo
+// archivo de diseño original, sin el texto rasterizado).
+const SHIELD_WIDTH = 501;
+const SHIELD_HEIGHT = 587;
 
 /**
- * Logo real de Lexperom (escudo + "LEXPEROM"), tal como se diseñó —
- * exportado en PNG de alta resolución con fondo transparente. Next.js
- * sirve versiones optimizadas/redimensionadas automáticamente a partir
- * de este archivo, así que nunca se ve pixelado sin importar el tamaño
- * en pantalla. Tonos claros: pensado para fondos oscuros (nuestro header
- * azul), no para fondo blanco.
+ * Escudo real (imagen, tonos exactos del diseño) + "LEXPEROM" como texto
+ * nativo del navegador — misma tipografía que el generador original
+ * (Geist Black 900, tracking 0.04em, ya cargada en el sitio vía
+ * next/font en layout.tsx). Separar el texto del PNG evita que se vea
+ * suave a tamaño de header: el escudo nunca pierde nitidez porque viene
+ * de un archivo de 4000px, y el texto es vector real del navegador.
  */
 export function LexperomLogo({ className }: LexperomLogoProps) {
   return (
-    <Image
-      src="/brand/lexperom-horizontal.png"
-      alt="Lexperom"
-      width={LOGO_WIDTH}
-      height={LOGO_HEIGHT}
-      priority
-      className={`h-8 w-auto ${className ?? ""}`}
-    />
+    <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
+      <Image
+        src="/brand/lexperom-shield.png"
+        alt=""
+        width={SHIELD_WIDTH}
+        height={SHIELD_HEIGHT}
+        priority
+        className="h-8 w-auto"
+      />
+      <span className="font-sans text-2xl font-black uppercase tracking-[0.04em] text-white">
+        Lexperom
+      </span>
+    </span>
   );
 }
