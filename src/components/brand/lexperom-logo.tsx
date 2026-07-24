@@ -1,18 +1,30 @@
-import { siteConfig } from "@/config/site";
-import { LexperomShield } from "./lexperom-shield";
+import Image from "next/image";
 
 interface LexperomLogoProps {
   className?: string;
 }
 
-/** Escudo + nombre, el lockup horizontal completo del logo. */
+// Dimensiones reales del archivo exportado (public/brand/lexperom-horizontal.png).
+const LOGO_WIDTH = 4000;
+const LOGO_HEIGHT = 818;
+
+/**
+ * Logo real de Lexperom (escudo + "LEXPEROM"), tal como se diseñó —
+ * exportado en PNG de alta resolución con fondo transparente. Next.js
+ * sirve versiones optimizadas/redimensionadas automáticamente a partir
+ * de este archivo, así que nunca se ve pixelado sin importar el tamaño
+ * en pantalla. Tonos claros: pensado para fondos oscuros (nuestro header
+ * azul), no para fondo blanco.
+ */
 export function LexperomLogo({ className }: LexperomLogoProps) {
   return (
-    <span className={`inline-flex items-center gap-2 text-white ${className ?? ""}`}>
-      <LexperomShield className="h-7 w-auto shrink-0" />
-      <span className="text-lg font-black uppercase tracking-wide">
-        {siteConfig.logo.wordmarkText}
-      </span>
-    </span>
+    <Image
+      src="/brand/lexperom-horizontal.png"
+      alt="Lexperom"
+      width={LOGO_WIDTH}
+      height={LOGO_HEIGHT}
+      priority
+      className={`h-8 w-auto ${className ?? ""}`}
+    />
   );
 }
