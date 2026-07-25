@@ -21,9 +21,9 @@
     mask="url(#favicon-anillo)"
   />
   <g clip-path="url(#favicon-nucleo)">
-    <rect x="-6" y="-6" width="76" height="92" fill="#6A7186" />
-    <rect x="70" y="-6" width="76" height="92" fill="#1a3a5c" />
-    <rect x="-6" y="86" width="76" height="92" fill="#A7ACB8" />
-    <rect x="70" y="86" width="76" height="92" fill="#3A4257" />
+    <rect x="-6" y="-6" width="76" height="92" fill="#B9BBC0" />
+    <rect x="70" y="-6" width="76" height="92" fill="#FFFFFF" />
+    <rect x="-6" y="86" width="76" height="92" fill="#80848E" />
+    <rect x="70" y="86" width="76" height="92" fill="#D9DBDE" />
   </g>
 </svg>
