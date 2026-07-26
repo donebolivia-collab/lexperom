@@ -47,7 +47,7 @@ export const siteConfig = {
     whatsapp: "67725694",
     phone: "67725694",
     countryCode: "591",
-    email: "[EMAIL_PENDIENTE]",
+    email: "contacto@lexperom.com",
     address: "[DIRECCION_PENDIENTE]",
     city: "[CIUDAD_PENDIENTE]",
     country: "Bolivia",
