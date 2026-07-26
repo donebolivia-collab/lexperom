@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Phone, MessageCircle, Mail, MapPin, ShieldCheck, Scale, Lock } from "lucide-react";
+import { Phone, Mail, MapPin, ShieldCheck, Scale, Lock } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Card, CardContent } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ function isPlaceholder(value: string): boolean {
 }
 
 interface ChannelCard {
-  icon: typeof Phone;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   iconColorClass: string;
   iconBgClass: string;
   title: string;
@@ -41,27 +42,25 @@ export default function CanalesContactoPage() {
       iconColorClass: "text-red-600",
       iconBgClass: "bg-red-50",
       title: "Llámanos ahora",
-      description: `Llámanos al ${phone}.`,
+      description: phone,
       ctaLabel: "Llamar",
       href: `tel:+${countryCode}${phone}`,
     },
     {
-      icon: MessageCircle,
-      iconColorClass: "text-emerald-600",
-      iconBgClass: "bg-emerald-50",
+      icon: WhatsAppIcon,
+      iconColorClass: "text-white",
+      iconBgClass: "bg-[#25D366]",
       title: "Chat por WhatsApp",
-      description: `Escríbenos por WhatsApp al ${whatsapp}.`,
+      description: whatsapp,
       ctaLabel: "Enviar mensaje",
       href: `https://wa.me/${countryCode}${whatsapp}?text=${encodeURIComponent("Hola, necesito orientación legal.")}`,
     },
     {
       icon: Mail,
-      iconColorClass: "text-brand",
-      iconBgClass: "bg-brand/10",
+      iconColorClass: "text-accent",
+      iconBgClass: "bg-accent/10",
       title: "Correo electrónico",
-      description: emailReady
-        ? `Envíanos un correo electrónico a ${email}.`
-        : "Disponible próximamente.",
+      description: emailReady ? email : "Disponible próximamente.",
       ctaLabel: "Enviar correo",
       href: emailReady ? `mailto:${email}` : undefined,
     },
@@ -118,8 +117,8 @@ export default function CanalesContactoPage() {
                   <h2 className="mt-4 text-base font-semibold text-ink">{channel.title}</h2>
                   <p
                     className={cn(
-                      "mt-1.5 flex-1 text-sm leading-relaxed",
-                      disabled ? "text-muted" : "text-ink"
+                      "mt-1.5 flex-1 text-sm leading-relaxed sm:text-base",
+                      disabled ? "text-muted" : "font-semibold text-brand"
                     )}
                   >
                     {channel.description}

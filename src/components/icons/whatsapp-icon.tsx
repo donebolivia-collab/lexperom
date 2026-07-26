@@ -1,11 +1,15 @@
-interface WhatsAppIconProps {
-  className?: string;
-}
+type WhatsAppIconProps = React.SVGProps<SVGSVGElement>;
 
 /** Glifo oficial de WhatsApp (auricular sobre burbuja), como SVG propio. */
-export function WhatsAppIcon({ className }: WhatsAppIconProps) {
+export function WhatsAppIcon({ className, ...props }: WhatsAppIconProps) {
   return (
-    <svg viewBox="0 0 32 32" className={className} fill="currentColor" aria-hidden="true">
+    <svg
+      viewBox="0 0 32 32"
+      className={className}
+      fill="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
       <path d="M16.004 3c-7.18 0-13 5.82-13 13 0 2.29.6 4.52 1.75 6.49L3 29l6.68-1.75a12.95 12.95 0 0 0 6.32 1.61h.01c7.18 0 13-5.82 13-13s-5.82-13-13-13Zm0 23.78h-.01a10.8 10.8 0 0 1-5.5-1.5l-.39-.23-3.97 1.04 1.06-3.87-.26-.4a10.77 10.77 0 0 1-1.65-5.82c0-5.96 4.85-10.8 10.81-10.8 2.89 0 5.6 1.13 7.64 3.17a10.73 10.73 0 0 1 3.16 7.64c0 5.96-4.85 10.77-10.89 10.77Zm5.93-8.08c-.32-.16-1.9-.94-2.2-1.05-.29-.11-.51-.16-.72.16-.21.32-.83 1.05-1.02 1.26-.19.21-.38.24-.7.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.87-1.76-2.19-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.56-.08-.16-.72-1.73-.98-2.37-.26-.62-.52-.54-.72-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.65 0 1.56 1.14 3.07 1.3 3.28.16.21 2.24 3.42 5.43 4.79.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.29-.21-.6-.37Z" />
     </svg>
   );
