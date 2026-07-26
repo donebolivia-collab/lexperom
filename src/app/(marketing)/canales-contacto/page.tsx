@@ -39,8 +39,8 @@ export default function CanalesContactoPage() {
   const channels: ChannelCard[] = [
     {
       icon: Phone,
-      iconColorClass: "text-red-600",
-      iconBgClass: "bg-red-50",
+      iconColorClass: "text-white",
+      iconBgClass: "bg-red-600",
       title: "Llámanos ahora",
       description: phone,
       ctaLabel: "Llamar",
@@ -57,8 +57,8 @@ export default function CanalesContactoPage() {
     },
     {
       icon: Mail,
-      iconColorClass: "text-accent",
-      iconBgClass: "bg-accent/10",
+      iconColorClass: "text-white",
+      iconBgClass: "bg-[#C9A227]",
       title: "Correo electrónico",
       description: emailReady ? email : "Disponible próximamente.",
       ctaLabel: "Enviar correo",
