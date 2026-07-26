@@ -19,6 +19,7 @@ interface ChannelCard {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   iconColorClass: string;
   iconBgClass: string;
+  iconSizeClass?: string;
   title: string;
   description: string;
   ctaLabel: string;
@@ -40,7 +41,8 @@ export default function CanalesContactoPage() {
     {
       icon: Phone,
       iconColorClass: "text-white",
-      iconBgClass: "bg-red-600",
+      iconBgClass: "bg-[#D2574F]",
+      iconSizeClass: "h-[19px] w-[19px]",
       title: "Llámanos ahora",
       description: phone,
       ctaLabel: "Llamar",
@@ -58,7 +60,7 @@ export default function CanalesContactoPage() {
     {
       icon: Mail,
       iconColorClass: "text-white",
-      iconBgClass: "bg-[#C9A227]",
+      iconBgClass: "bg-[#D97706]",
       title: "Correo electrónico",
       description: emailReady ? email : "Disponible próximamente.",
       ctaLabel: "Enviar correo",
@@ -104,12 +106,15 @@ export default function CanalesContactoPage() {
                 <CardContent className="flex h-full flex-1 flex-col items-center p-6">
                   <div
                     className={cn(
-                      "flex h-14 w-14 items-center justify-center rounded-full",
+                      "flex h-[50px] w-[50px] items-center justify-center rounded-full",
                       disabled ? "bg-black/[0.04]" : channel.iconBgClass
                     )}
                   >
                     <Icon
-                      className={cn("h-6 w-6", disabled ? "text-muted" : channel.iconColorClass)}
+                      className={cn(
+                        channel.iconSizeClass ?? "h-[22px] w-[22px]",
+                        disabled ? "text-muted" : channel.iconColorClass
+                      )}
                       aria-hidden="true"
                     />
                   </div>
@@ -125,7 +130,7 @@ export default function CanalesContactoPage() {
                   </p>
 
                   {disabled ? (
-                    <span className="mt-6 w-full rounded-md border border-line px-4 py-2.5 text-sm font-medium text-muted">
+                    <span className="mt-[19px] w-full rounded-md border border-line px-4 py-2.5 text-sm font-medium text-muted">
                       Próximamente
                     </span>
                   ) : (
@@ -133,7 +138,7 @@ export default function CanalesContactoPage() {
                       href={channel.href}
                       target={channel.href?.startsWith("http") ? "_blank" : undefined}
                       rel={channel.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className={cn(buttonVariants({ variant: "primary" }), "mt-6 w-full")}
+                      className={cn(buttonVariants({ variant: "primary" }), "mt-[19px] w-full")}
                     >
                       {channel.ctaLabel}
                     </a>
