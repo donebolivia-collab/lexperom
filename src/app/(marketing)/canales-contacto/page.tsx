@@ -22,7 +22,6 @@ interface ChannelCard {
   description: string;
   ctaLabel: string;
   href?: string;
-  primary?: boolean;
 }
 
 const TRUST_ITEMS = [
@@ -42,8 +41,8 @@ export default function CanalesContactoPage() {
       iconColorClass: "text-red-600",
       iconBgClass: "bg-red-50",
       title: "Llámanos ahora",
-      description: "Atención directa en horario de oficina.",
-      ctaLabel: phone,
+      description: `Llámanos al ${phone}.`,
+      ctaLabel: "Llamar",
       href: `tel:+${countryCode}${phone}`,
     },
     {
@@ -51,17 +50,18 @@ export default function CanalesContactoPage() {
       iconColorClass: "text-emerald-600",
       iconBgClass: "bg-emerald-50",
       title: "Chat por WhatsApp",
-      description: "Escríbenos y te respondemos apenas podamos.",
-      ctaLabel: "Abrir WhatsApp",
+      description: `Escríbenos por WhatsApp al ${whatsapp}.`,
+      ctaLabel: "Enviar mensaje",
       href: `https://wa.me/${countryCode}${whatsapp}?text=${encodeURIComponent("Hola, necesito orientación legal.")}`,
-      primary: true,
     },
     {
       icon: Mail,
       iconColorClass: "text-brand",
       iconBgClass: "bg-brand/10",
       title: "Correo electrónico",
-      description: emailReady ? "Escríbenos y te respondemos por correo." : "Disponible próximamente.",
+      description: emailReady
+        ? `Envíanos un correo electrónico a ${email}.`
+        : "Disponible próximamente.",
       ctaLabel: "Enviar correo",
       href: emailReady ? `mailto:${email}` : undefined,
     },
@@ -116,7 +116,12 @@ export default function CanalesContactoPage() {
                   </div>
 
                   <h2 className="mt-4 text-base font-semibold text-ink">{channel.title}</h2>
-                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">
+                  <p
+                    className={cn(
+                      "mt-1.5 flex-1 text-sm leading-relaxed",
+                      disabled ? "text-muted" : "text-ink"
+                    )}
+                  >
                     {channel.description}
                   </p>
 
@@ -129,10 +134,7 @@ export default function CanalesContactoPage() {
                       href={channel.href}
                       target={channel.href?.startsWith("http") ? "_blank" : undefined}
                       rel={channel.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className={cn(
-                        buttonVariants({ variant: channel.primary ? "primary" : "secondary" }),
-                        "mt-6 w-full"
-                      )}
+                      className={cn(buttonVariants({ variant: "primary" }), "mt-6 w-full")}
                     >
                       {channel.ctaLabel}
                     </a>
