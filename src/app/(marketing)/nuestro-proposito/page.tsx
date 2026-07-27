@@ -31,9 +31,9 @@ export default function NuestroPropositoPage() {
               define nuestra razón de ser. Asumimos el compromiso firme de convertir el derecho en
               un espacio verdaderamente accesible, transparente y protector. Creemos que la
               justicia no debe ser un privilegio reservado únicamente para quienes conocen las
-              reglas del sistema, por eso, brindamos un trato cálido y humano, entendiendo a fondo
-              las necesidades de cada persona para acompañarla y encontrar la solución exacta que
-              su caso requiere. La primera consulta en Lexperom siempre es gratuita.
+              reglas del sistema, por eso, brindamos un trato humano, entendiendo a fondo las
+              necesidades de cada persona para acompañarla y encontrar la solución legal que su
+              caso requiere. La primera consulta en Lexperom siempre es gratuita.
             </p>
           </div>
 
