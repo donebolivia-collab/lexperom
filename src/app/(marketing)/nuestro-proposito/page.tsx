@@ -3,7 +3,7 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `Nuestro Equipo — ${siteConfig.siteName}`,
+  title: `Sobre Nosotros — ${siteConfig.siteName}`,
   description:
     "De dónde viene el nombre Lexperom, cómo trabajamos y el Cupo Social que sostiene nuestra función social en Bolivia.",
 };
@@ -18,27 +18,27 @@ const MODELO_INTRO =
 export default function NuestroPropositoPage() {
   return (
     <div>
-      {/* Héroe oscuro */}
-      <section className="relative overflow-hidden bg-brand-strong">
+      {/* Héroe */}
+      <section className="relative overflow-hidden bg-white">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
           <div className="order-2 lg:order-1">
-            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Lex, perfugium omnibus
+            <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+              Nuestro compromiso
             </h1>
-            <p className="mt-6 text-justify text-sm leading-relaxed text-white/80 sm:text-base">
+            <p className="mt-6 text-justify text-sm leading-relaxed text-ink sm:text-base">
               Lexperom nace bajo la inspiración del latín <em className="italic">Lex, perfugium
               omnibus</em>, que se traduce como «la ley, refugio para todos», un principio que
               define nuestra razón de ser. Asumimos el compromiso firme de convertir el derecho en
               un espacio verdaderamente accesible, transparente y protector. Creemos que la
               justicia no debe ser un privilegio reservado únicamente para quienes conocen las
-              reglas del sistema; por eso, brindamos un trato cálido y humano, entendiendo a fondo
+              reglas del sistema, por eso, brindamos un trato cálido y humano, entendiendo a fondo
               las necesidades de cada persona para acompañarla y encontrar la solución exacta que
               su caso requiere. La primera consulta en Lexperom siempre es gratuita.
             </p>
           </div>
 
           <div className="relative order-1 lg:order-2">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg ring-1 ring-line">
               <Image
                 src="/images/nuestro-proposito/hero-proteccion.jpg"
                 alt="Abogado sosteniendo un ícono de protección legal"

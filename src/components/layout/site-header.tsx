@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { href: "/soluciones-legales", top: "Nuestros", bottom: "Servicios" },
   { href: "/planes", top: "Nuestros", bottom: "Planes" },
   { href: "/canales-contacto", top: "Canales", bottom: "de Contacto" },
-  { href: "/nuestro-proposito", top: "Nuestro", bottom: "Equipo" },
+  { href: "/nuestro-proposito", top: "Sobre", bottom: "Nosotros" },
 ];
 
 export function SiteHeader() {
