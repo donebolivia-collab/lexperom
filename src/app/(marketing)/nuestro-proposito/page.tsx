@@ -12,9 +12,6 @@ const EQUIPO_PARAGRAPHS = [
   "En el equipo Lexperom fusionamos el criterio jurídico tradicional con la precisión de las herramientas digitales para ofrecerte soluciones reales, claras y accesibles. Desafiamos los esquemas convencionales de la asesoría legal, respaldando nuestro conocimiento profesional con tecnologías de vanguardia para brindarte un servicio ágil, transparente y cercano.",
 ];
 
-const MODELO_INTRO =
-  "Cobramos por planes de protección legal, y ese ingreso es justamente lo que nos permite seguir aquí, mejorar y llegar a más personas cada mes. Pero no queremos que la capacidad de pagar decida quién accede a la justicia.";
-
 export default function NuestroPropositoPage() {
   return (
     <div>
@@ -91,17 +88,16 @@ export default function NuestroPropositoPage() {
             </h2>
             <div className="mt-5 space-y-4">
               <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
-                {MODELO_INTRO}
-              </p>
-              <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
-                Cuando un caso requiere ir más allá de la orientación inicial y detectamos que la
-                persona o familia se encuentra en una situación de vulnerabilidad sin la
-                posibilidad de pagar las diligencias posteriores, entra en juego nuestro{" "}
+                Financiamos nuestro proyecto a través de planes de protección legal que nos
+                permiten seguir creciendo y mejorando cada día; sin embargo, creemos que la
+                capacidad económica jamás debe condicionar el acceso a la justicia. Por eso,
+                cuando un caso requiere ir más allá de la orientación inicial y detectamos que una
+                persona o familia en situación de vulnerabilidad no puede costear las diligencias
+                posteriores, entra en juego nuestro{" "}
                 <strong className="font-semibold text-brand">Cupo Social Lexperom</strong>.
-                Garantizamos al menos un cupo cada mes, pero ese número crece a la par con
-                nosotros, por cada 20 membresías activas, sumamos un cupo adicional. Así de
-                simple, cuantas más personas confían en Lexperom, a más personas que realmente lo
-                necesitan podemos brindar amparo y protección.
+                Garantizamos como mínimo un cupo mensual y sumamos uno adicional por cada 20
+                membresías activas: cuantas más personas confían en nosotros, a más familias que
+                realmente lo necesitan podemos brindarles amparo y protección.
               </p>
             </div>
           </div>
