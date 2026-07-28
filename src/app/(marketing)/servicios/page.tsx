@@ -42,10 +42,10 @@ export default function SolucionesLegalesPage() {
                   {area.description}
                 </p>
                 <Link
-                  href="/#consulta"
+                  href={area.slug ? `/servicios/${area.slug}` : "/#consulta"}
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline"
                 >
-                  Conocer más
+                  {area.slug ? "Conocer más" : "Cuéntanos tu caso"}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               </CardContent>
