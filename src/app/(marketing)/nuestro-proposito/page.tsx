@@ -89,15 +89,15 @@ export default function NuestroPropositoPage() {
             <div className="mt-5 space-y-4">
               <p className="text-justify text-sm leading-relaxed text-ink sm:text-base">
                 Financiamos nuestro proyecto a través de planes de protección legal que nos
-                permiten seguir creciendo y mejorando cada día; sin embargo, creemos que la
-                capacidad económica jamás debe condicionar el acceso a la justicia. Por eso,
-                cuando un caso requiere ir más allá de la orientación inicial y detectamos que una
-                persona o familia en situación de vulnerabilidad no puede costear las diligencias
-                posteriores, entra en juego nuestro{" "}
+                permiten seguir creciendo y mejorando cada día, pero creemos que las condiciones
+                económicas jamás deben ser un obstáculo para acceder a la justicia. Por eso, cuando
+                un caso requiere ir más allá de la orientación inicial y detectamos que la persona
+                atraviesa una situación de vulnerabilidad que le dificulta asumir el costo de las
+                diligencias posteriores, entra en juego nuestro{" "}
                 <strong className="font-semibold text-brand">Cupo Social Lexperom</strong>.
                 Garantizamos como mínimo un cupo mensual y sumamos uno adicional por cada 20
-                membresías activas: cuantas más personas confían en nosotros, a más familias que
-                realmente lo necesitan podemos brindarles amparo y protección.
+                membresías activas. De esta manera, cuantas más personas confían en nosotros, más
+                amparo y protección podemos brindar a quienes realmente lo necesitan.
               </p>
             </div>
           </div>
