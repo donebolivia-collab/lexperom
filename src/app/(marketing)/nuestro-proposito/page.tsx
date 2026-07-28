@@ -20,9 +20,9 @@ export default function NuestroPropositoPage() {
     <div>
       {/* Héroe */}
       <section className="relative overflow-hidden bg-white">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-24 lg:grid-cols-2 lg:gap-16">
           <div className="order-2 lg:order-1">
-            <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            <h1 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               Nuestro compromiso
             </h1>
             <p className="mt-6 text-justify text-sm leading-relaxed text-ink sm:text-base">
@@ -53,7 +53,7 @@ export default function NuestroPropositoPage() {
       </section>
 
       {/* Nuestro equipo */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <section className="mx-auto max-w-6xl px-4 pb-12 pt-0 sm:px-6 sm:pb-16">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
             <Image
