@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const EQUIPO_PARAGRAPHS = [
-  "En Lexperom combinamos el conocimiento jurídico tradicional con herramientas digitales de vanguardia para dar soluciones legales reales y accesibles. Rompemos los modelos tradicionales de asesoría legal para ofrecer alternativas alineadas con las nuevas tecnologías, sin dejar de lado la seriedad y el criterio profesional que cualquier caso merece.",
+  "En el equipo Lexperom fusionamos el criterio jurídico tradicional con la precisión de las herramientas digitales para ofrecerte soluciones reales, claras y accesibles. Desafiamos los esquemas convencionales de la asesoría legal, respaldando nuestro conocimiento profesional con tecnologías de vanguardia para brindarte un servicio ágil, transparente y cercano.",
 ];
 
 const MODELO_INTRO =
